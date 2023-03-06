@@ -12,7 +12,7 @@ class WhatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.teal,
       ),
       debugShowCheckedModeBanner: false,
       home: App(),

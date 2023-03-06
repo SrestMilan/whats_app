@@ -10,10 +10,45 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('WhatsApp'),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: const Text('WhatsApp'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                child: Icon(Icons.search),
+              ),
+              Tab(
+                child: Text('Chats'),
+              ),
+              Tab(
+                child: Text('Status'),
+              ),
+              Tab(
+                child: Text('Call'),
+              ),
+            ],
+          ),
+          actions: const [
+            Icon(Icons.search),
+            SizedBox(
+              width: 10,
+            ),
+            Icon(Icons.more_horiz_outlined),
+            SizedBox(
+              width: 10,
+            ),
+          ],
+        ),
+        body: const TabBarView(children: [
+          Text('Search'),
+          Text('Chat'),
+          Text('Status'),
+          Text('Call'),
+        ]),
       ),
     );
   }
