@@ -19,7 +19,7 @@ class _AppState extends State<App> {
           bottom: const TabBar(
             tabs: [
               Tab(
-                child: Icon(Icons.search),
+                child: Icon(Icons.camera_alt),
               ),
               Tab(
                 child: Text('Chats'),
@@ -32,22 +32,68 @@ class _AppState extends State<App> {
               ),
             ],
           ),
-          actions: const [
+          actions: [
             Icon(Icons.search),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Icon(Icons.more_horiz_outlined),
+            PopupMenuButton(
+              child: Icon(Icons.more_vert_outlined),
+              itemBuilder: (
+                context,
+              ) =>
+                  const [
+                PopupMenuItem(
+                  value: "1",
+                  child: Text('NewGroup'),
+                ),
+                PopupMenuItem(
+                  value: "1",
+                  child: Text('Setting'),
+                ),
+                PopupMenuItem(
+                  value: "1",
+                  child: Text('Logout'),
+                ),
+              ],
+            ),
             SizedBox(
               width: 10,
             ),
           ],
         ),
-        body: const TabBarView(children: [
-          Text('Search'),
-          Text('Chat'),
+        body: TabBarView(children: [
+          Text('Camera'),
+          ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return const ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                ),
+                title: Text('Milan'),
+                subtitle: Text("What are you doing"),
+                trailing: Text('6:30 pm'),
+              );
+            },
+          ),
           Text('Status'),
-          Text('Call'),
+          ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                ),
+                title: Text('Milan'),
+                subtitle: Text(
+                    index / 2 == 0 ? "Missed audio call" : "Missed video call"),
+                trailing: Icon(index / 2 == 0 ? Icons.phone : Icons.video_call),
+              );
+            },
+          ),
         ]),
       ),
     );
